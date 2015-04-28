@@ -8,6 +8,8 @@ var radius = 8;
 var duration = 7;
 var t = 0;
 var length = 30;
+var hy1 = 350;
+var hy2 = 350;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -17,6 +19,38 @@ svg.append("rect")
     .attr("width",width)
     .attr("height",height)
     .attr("fill","#fff7bc");
+
+//vertical line;
+//grey rgb(149, 165, 166)
+svg.append("line")
+    .attr("id","vertical")
+    .attr("x1", 50)
+    .attr("x2",50)
+    .attr("y1", 50)
+    .attr("y2", hy1 + 10)
+    .style({
+        "stroke" : "rgb(0, 0, 0)",
+        "stroke-width" : "3"
+    });
+
+//horizontal line
+svg.append("line")
+    .attr("id","horizontal")
+    .attr("x1", 40)
+    .attr("x2", 450)
+    .attr("y1", hy1)
+    .attr("y2", hy2)
+    .style({
+        "stroke" : "rgb(0, 0, 0)",
+        "stroke-width" : "3"
+    });
+
+//time label
+
+svg.append("text")
+    .text("time")
+    .attr("x", 430)
+    .attr("y", hy1 + 30);
 
 
 var circleGroup  = svg.append("g").classed("group");
@@ -37,9 +71,9 @@ circleGroup.enter()
     .attr("fill", "#2171b5");*/
 
 var update = function () {
-    var linesGroup = svg.selectAll("line").data(data);
+    var linesGroup = svg.selectAll(".avg").data(data);
 
-    linesGroup.enter().append("line")
+    linesGroup.enter().append("line").classed("avg",true)
         .attr("x1", function(d) {return d.cx - length/2})
         .attr("x2", function (d) {
             return d.cx + length/2;
@@ -56,6 +90,8 @@ var update = function () {
         }
 );
 
+
+
     circleGroup = svg.selectAll("circle").data(data);
 
 
@@ -71,7 +107,7 @@ var update = function () {
             return d.cy;
         })
         .attr("r", radius)
-        .attr("fill", "#2171b5");
+        .attr("fill", "#31a354");
 
     circleGroup.transition().duration(duration)
         .attr({
