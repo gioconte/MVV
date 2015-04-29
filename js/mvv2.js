@@ -23,26 +23,20 @@ svg.append("rect")
 //grey rgb(149, 165, 166)
 svg.append("line")
     .attr("id","vertical")
+    .classed("axis",true)
     .attr("x1", 50)
     .attr("x2",50)
     .attr("y1", 50)
-    .attr("y2", hy1 + 10)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy1 + 10);
 
 //horizontal line
 svg.append("line")
     .attr("id","horizontal")
+    .classed("axis",true)
     .attr("x1", 40)
     .attr("x2", 450)
     .attr("y1", hy1)
-    .attr("y2", hy2)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy2);
 
 //time label
 
@@ -65,7 +59,8 @@ data.forEach(function(d){ uncertainties.push(d.uncertainty)});
 
 var quantileScale = d3.scale.quantile()
     .domain(uncertainties)
-    .range(['#66c2a4','#2ca25f','#006d2c']);
+    //.range(['#66c2a4','#2ca25f','#006d2c']);
+.range(['#6baed6','#3182bd','#08519c'])
 
 var g = svg.append("g");
 

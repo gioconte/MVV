@@ -21,27 +21,20 @@ svg.append("rect")
 //grey rgb(149, 165, 166)
 svg.append("line")
     .attr("id","vertical")
+    .classed("axis",true)
     .attr("x1", 50)
     .attr("x2",50)
     .attr("y1", 50)
-    .attr("y2", hy1 + 10)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy1 + 10);
 
 //horizontal line
 svg.append("line")
     .attr("id","horizontal")
+    .classed("axis",true)
     .attr("x1", 40)
     .attr("x2", 450)
     .attr("y1", hy1)
-    .attr("y2", hy2)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
-
+    .attr("y2", hy2);
 //time label
 
 svg.append("text")
@@ -62,8 +55,7 @@ emptyCircle.selectAll(".border").data(data)
     })
     .attr("r", function (d) {
         return radius *(1+ d.uncertainty);
-    })
-    .attr("fill","#31a354")
+    });
 
 emptyCircle.selectAll(".empty").data(data)
     .enter().append("circle").classed("empty",true)
@@ -76,21 +68,20 @@ emptyCircle.selectAll(".empty").data(data)
     .attr("r", function (d) {
         return radius *(1+ d.uncertainty) - 1;
     })
-    .attr("fill","#fff7bc");
+    .attr("fill","#9ecae1");
 
 
 var fullCircles  = svg.append("g");
 
 
-fullCircles.selectAll(".full").data(data)
-    .enter().append("circle").classed("full",true)
+fullCircles.selectAll(".dots").data(data)
+    .enter().append("circle").classed("dots",true)
     .attr("cx", function (d) {
         return d.cx;
     })
     .attr("cy", function (d) {
         return d.cy;
     })
-    .attr("r",radius)
-    .attr("fill","#31a354");
+    .attr("r",radius);
 
 

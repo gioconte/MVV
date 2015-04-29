@@ -25,26 +25,20 @@ svg.append("rect")
 //grey rgb(149, 165, 166)
 svg.append("line")
     .attr("id","vertical")
+    .classed("axis",true)
     .attr("x1", 50)
     .attr("x2",50)
     .attr("y1", 50)
-    .attr("y2", hy1 + 10)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy1 + 10);
 
 //horizontal line
 svg.append("line")
     .attr("id","horizontal")
+    .classed("axis",true)
     .attr("x1", 40)
     .attr("x2", 450)
     .attr("y1", hy1)
-    .attr("y2", hy2)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy2);
 
 //time label
 
@@ -93,11 +87,12 @@ var update = function () {
 
 
 
-    circleGroup = svg.selectAll("circle").data(data);
+    circleGroup = svg.selectAll(".dots").data(data);
 
 
     circleGroup.enter()
         .append("circle")
+        .classed("dots",true)
         .attr("id", function(d){
             return d.id;
         })
@@ -107,8 +102,8 @@ var update = function () {
         .attr("cy", function(d){
             return d.cy;
         })
-        .attr("r", radius)
-        .attr("fill", "#31a354");
+        .attr("r", radius);
+
 
     circleGroup.transition().duration(duration)
         .attr({

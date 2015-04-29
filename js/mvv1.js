@@ -17,33 +17,27 @@ var rectangle = svg.append("rect")
                     .attr("id","canvas")
                     .attr("width",width)
                     .attr("height",height)
-                    .attr("fill","#ecf0f1");
+                    //.attr("fill","#ecf0f1");
 
 
 //vertical line;
 //grey rgb(149, 165, 166)
 svg.append("line")
     .attr("id","vertical")
+    .classed("axis",true)
     .attr("x1", 50)
     .attr("x2",50)
     .attr("y1", 50)
-    .attr("y2", hy1 + 10)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy1 + 10);
 
 //horizontal line
 svg.append("line")
     .attr("id","horizontal")
+    .classed("axis",true)
     .attr("x1", 40)
     .attr("x2", 450)
     .attr("y1", hy1)
-    .attr("y2", hy2)
-    .style({
-        "stroke" : "rgb(0, 0, 0)",
-        "stroke-width" : "3"
-    });
+    .attr("y2", hy2);
 
 //time label
 
@@ -87,23 +81,19 @@ var update = function() {
     );
 
     var uncertainGroup = svg.append("g").
-    uncertainGroup = svg.selectAll("circle").data(data);
+    uncertainGroup = svg.selectAll(".dots").data(data);
 
 
 
-    uncertainGroup.enter().append("circle")
+    uncertainGroup.enter().append("circle").classed("dots",true)
         .attr("id", function(d){return d.id})
-        .attr("r", function (d) {
-            return d.computedValue;
-        })
+        .attr("r", radius)
         .attr("cx", function (d) {
             return d.cx;
         })
         .attr("cy", function(d){
             return d.cy;
-        })
-        .attr("fill", color)
-        ;
+        });
 
 
     uncertainGroup.transition().duration(duration)
