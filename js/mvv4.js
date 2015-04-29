@@ -93,6 +93,14 @@ var drawLegend = function () {
     var min = d3.min(uncertainties);
     var max = d3.max(uncertainties);
 
+    svgLegend.append("text").text("Level Of Uncertainty")
+        .attr("x", 10)
+        .attr("y", 30);
+
+
+
+
+
     /* this somehow works
 
 
@@ -132,14 +140,10 @@ var drawLegend = function () {
             color = quantileScale((leftRange + rightRange)/2);
         }
 
-        svgLegend.append("text").text("Level Of Uncertainty")
-            .attr("x", 10)
-            .attr("y", 30);
         var y = 30 + i*35;
         var elementGroup = svgLegend.append("g")
             .attr("transform","translate(10,"+y+")")
             .attr("id",i);
-
 
         elementGroup.append("rect")
             .attr("x",5)
