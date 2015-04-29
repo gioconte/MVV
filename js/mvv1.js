@@ -14,9 +14,10 @@ var svg = d3.select("body").append("svg")
         ;
 
 var rectangle = svg.append("rect")
+                    .attr("id","canvas")
                     .attr("width",width)
                     .attr("height",height)
-                    .attr("fill","#fff7bc");
+                    .attr("fill","#ecf0f1");
 
 
 //vertical line;
