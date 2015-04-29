@@ -15,7 +15,7 @@
 <body>
 <div class="wrapper">
     <header>
-        <h1>Visually Encoding Uncertainty</h1>
+        <h1>How to Visually Encode Uncertainty</h1>
         <p>Minimum Viable Visualization for CS524</p>
 
         <p class="view"><a href="https://github.com/gioconte/MVV">View the Project on GitHub <small>gioconte/MVV</small></a></p>
@@ -33,8 +33,9 @@
 
             <a id="data" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data</h3>
         <p>
-            The main goal of these simple visualizations is to visually encode the notion of "uncertainty".
-            I have tried different channel like motion, color and shape to encode the uncertainty bound to data.
+            To that goal, I have created a simple dataset. Each data point contains its position in x,y coordinates and a level of uncertainty.
+            The idea behind this simple dataset is that the x-coordinate represents a point in time that is certain, while the y-coordinate
+            represents the value of a measure to which is associated the uncertainty.
         </p>
         <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motion</h3>
         <p>"Motion" was the first channel I wanted to explore.
@@ -53,7 +54,7 @@
                 frequency = 1/ (1 - uncertainty ) exp (3)
             </li>
             <li>
-                y = y.origin = 3 sin ( frequency * t )
+                y = y.origin + 3 sin ( frequency * t )
             </li>
         </ul>
         where "y.origin" is the original position of the data point.
@@ -69,8 +70,9 @@
         <h3>
             <a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shape</h3>
 
-        <p>In the following examples, I exploited the shape of the data point to represent </p>
-        <a href="http://gioconte.github.io/MVV/mvv5.html"> MVV5</a>
+        <p>In the following examples, I exploited the shape of the data point to represent uncertainty. Each data point is represented using a circle
+        and an external border. The more distan is the external border, the more uncertain the data point is. <a href="http://gioconte.github.io/MVV/mvv5.html"> MVV5</a></p>
+
 
     </section>
     <footer>
