@@ -1,16 +1,23 @@
 /**
  * Created by giorgioconte on 28/04/15.
  */
+/**
+ * Created by giorgioconte on 27/04/15.
+ */
 
 var width = window.innerWidth;
 var height = window.innerHeight;
 var radius = 8;
-var duration = 7;
-var t = 0;
-var length = 30;
+var svgLegend;
 var hy1 = 350;
 var hy2 = 350;
 
+
+//var colors = ['#6baed6','#4292c6' ,'#2171b5','#08519c','#08306b'];
+
+//var colors = ['#6baed6','#08306b'];
+
+var colors = ['#deebf7','#08306b']
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -47,89 +54,118 @@ svg.append("text")
     .attr("x", 430)
     .attr("y", hy1 + 30);
 
-
-var circleGroup  = svg.append("g").classed("group");
 /*
-circleGroup = svg.selectAll("group.circle").data(data);
+ [
+ d3.min(data, function(d){return d.uncertainty;})
+ ,
+ d3.max(data, function(d){return d.uncertainty;})
+ ]
+ */
 
-circleGroup.enter()
-    .append("circle")
-    .attr("cx", function (d) {
-        return d.cx;
-    })
-    .attr("cy", function(d){
-        //return d.cy * (1 + Math.sin(t) / (1 - d.uncertainty));
-        console.log(d.cy);
-        return d.cy * (1 + Math.sin(t) / (1 - d.uncertainty)); ;
-    })
-    .attr("r", radius)
-    .attr("fill", "#2171b5");*/
+var uncertainties = [];
 
-var update = function () {
-    var linesGroup = svg.selectAll(".avg").data(data);
-
-    linesGroup.enter().append("line").classed("avg",true)
-        .attr("x1", function(d) {return d.cx - length/2})
-        .attr("x2", function (d) {
-            return d.cx + length/2;
-        })
-        .attr("y1", function (d) {
-            return d.cy;
-        })
-        .attr("y2", function(d){
-            return d.cy;
-    })
-        .style({
-            "stroke" : "rgb(255,0,0)",
-            "stroke-width" : "3"
+data.forEach(function(d){ uncertainties.push(d.uncertainty)});
+/*
+var linearScale = d3.scale.linear()
+    .domain([
+        function () {
+            return d3.min(uncertainties);
         }
-);
+        ,
+        function () {
+            return d3.max(uncertainties);
+        }
+    ])
+    .range(['#6baed6','#08306b']);*/
+
+var linearScale = d3.scale.linear().domain([
+    d3.min(uncertainties)
+    ,
+    d3.max(uncertainties)
+    ]).range(colors);
+
+var g = svg.append("g");
+
+g = svg.selectAll("circle").data(data);
 
 
+g.enter().append("circle")
+    .attr("id", function(d){return d.id})
+    .attr("cx", function(d) {return d.cx})
+    .attr("cy", function(d) {return d.cy})
+    .attr("r",radius)
+    .attr("fill", function(d){return linearScale(d.uncertainty)});
 
-    circleGroup = svg.selectAll(".dots").data(data);
+var drawLegend = function () {
+    console.log("legend");
+    svgLegend = d3.select("#legend");
 
+    /*
+    var legendItems = svgLegend.selectAll(".legendItem").data(linearScale.ticks(4));
 
-    circleGroup.enter()
-        .append("circle")
-        .classed("dots",true)
-        .attr("id", function(d){
-            return d.id;
-        })
-        .attr("cx", function (d) {
-            return d.cx;
-        })
-        .attr("cy", function(d){
-            return d.cy;
-        })
-        .attr("r", radius);
-
-
-    circleGroup.transition().duration(duration)
-        .attr({
-            transform: function(d) {
-                var frequency = Math.pow((1/(4*(1 - d.uncertainty))),3);
-
-                var y = 3 * Math.sin( t * frequency);
-
-                return "translate(" + [0, y] + ")"; }
+    //enter
+    var groupLegendItem = legendItems.enter().append("g").classed("legendItem",true)
+        .attr("transform", function (d,i) {
+            return "translate("+[5,i*29]+")";
         });
+
+    groupLegendItem.append("rect")
+        .attr("x",2)
+        .attr("y",2)
+        .attr("width", 29)
+        .attr("height", 29)
+        .attr("fill", function(d){
+            return linearScale(d);
+        });*/
+
+    var gradient = svgLegend.append("svg:defs")
+        .append("svg:linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "0%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
+
+    gradient.append("svg:stop")
+        .attr("offset", "0%")
+        .attr("stop-color", colors[0])
+        .attr("stop-opacity", 1);
+
+    gradient.append("svg:stop")
+        .attr("offset", "100%")
+        .attr("stop-color", colors[1])
+        .attr("stop-opacity", 1);
+
+    /*
+    gradient
+        .append("stop")
+        .attr("offset", "0.5")
+        .attr("stop-color", "#f00")*/
+
+    svgLegend.append("svg:rect")
+        .attr("width", 50)
+        .attr("height", 110)
+        .attr("y", 20)
+        .attr("x",10)
+        .style("fill", "url(#gradient)");
+
+    svgLegend.append("text")
+        .text(d3.min(uncertainties))
+        .attr("x", 70)
+        .attr("y", 30)
+
+    svgLegend.append("text")
+        .text(d3.max(uncertainties))
+        .attr("x", 70)
+        .attr("y", 130)
 
 
 };
 
 
+$(document).ready(
+    drawLegend
+);
 
-update();
-window.setInterval(switchData, duration);
 
-function switchData() {
-    t = t+1;
-
-   /* data.forEach(function(d){
-
-       d.cy = d.cy * (1 + Math.sin(t) / (1 - d.uncertainty));
-        return;
-    });*/
-    update();
-}

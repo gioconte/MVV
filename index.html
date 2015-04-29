@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Mvv by gioconte</title>
@@ -11,45 +11,74 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
+</head>
+<body>
+<div class="wrapper">
+    <header>
         <h1>Visually Encoding Uncertainty</h1>
         <p>Minimum Viable Visualization for CS524</p>
 
         <p class="view"><a href="https://github.com/gioconte/MVV">View the Project on GitHub <small>gioconte/MVV</small></a></p>
 
-      </header>
-      <section>
+    </header>
+    <section>
         <h3>
 
             <a id="goal" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h3>
-          <p>
-              The main goal of these simple visualizations is to visually encode the notion of "uncertainty".
-               I have tried different channel like motion and color to encode the uncertainty bound to data.
-          </p>
-<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motion - 1</h3>
-          <a href="http://gioconte.github.io/MVV/MVV1.html"> MVV1</a><br>
+        <p>
+            The main goal of these simple visualizations is to visually encode the notion of "uncertainty".
+            I have tried different channel like motion, color and shape to encode the uncertainty bound to data.
+        </p>
+        <h3>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Color</h3>
+            <a id="data" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data</h3>
+        <p>
+            The main goal of these simple visualizations is to visually encode the notion of "uncertainty".
+            I have tried different channel like motion, color and shape to encode the uncertainty bound to data.
+        </p>
+        <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motion</h3>
+        <p>"Motion" was the first channel I wanted to explore.
+            I propose two different approaches to render the uncertainty through this channel.
+            In the first example, dots move around their average position. The amplitude of the oscillation depends on the level
+            of uncertainty bound to the data point. The higher is the uncertainty, the higher is the amplitude of the oscillation.
+            Moreover, the size of the dots decreases when the oscillation reaches the endpoints.
+            <a href="http://gioconte.github.io/MVV/mvv1.html"> MVV1</a><br></p>
+        <p>
+            In the second example, dots still move around their average position, but the amplitude of the oscillations is constant.
+            In this case the uncertainty is represented by varying the frequency of the oscillation itself. The higher is the
+            uncertainty of the data point, the faster is its oscillation. More in details the position of each data point is
+            computed as follows:
+        <ul>
+            <li>
+                frequency = 1/ (1 - uncertainty ) exp (3)
+            </li>
+            <li>
+                y = y.origin = 3 sin ( frequency * t )
+            </li>
+        </ul>
+        where "y.origin" is the original position of the data point.
+        <a href="http://gioconte.github.io/MVV/mvv2.html"> MVV2</a><br></p>
 
-<p>Color</p>
-          <a href="http://gioconte.github.io/MVV/MVV2.html"> MVV2</a><br>
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motion - 2</h3>
 
-<p>Motion. Dots shaking.</p>
-          <a href="http://gioconte.github.io/MVV/MVV3.html"> MVV3</a>
+        <h3>
+            <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Color</h3>
 
-      </section>
-      <footer>
+        <p>"Color" was the second channel I exploited. In the first example I use a linear scale (<a href="http://gioconte.github.io/MVV/mvv3.html"> MVV3</a>),
+            while in the second I use a quantile scale (<a href="http://gioconte.github.io/MVV/mvv4.html"> MVV4</a>)</p>
+
+        <h3>
+            <a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shape</h3>
+
+        <p>Motion. Dots shaking.</p>
+        <a href="http://gioconte.github.io/MVV/MVV3.html"> MVV3</a>
+
+    </section>
+    <footer>
         <p>This project is maintained by <a href="https://github.com/gioconte">gioconte</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    </footer>
+</div>
+<script src="javascripts/scale.fix.js"></script>
+
+</body>
 </html>
