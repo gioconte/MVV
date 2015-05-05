@@ -24,6 +24,12 @@ body{
     fill: #08519c;
 }
 
+.ell{
+    /*fill: #08519c;*/
+    fill: #43a2ca;
+    opacity: 0.5;
+}
+
 #legend{
     position: absolute;
     width: 200px;

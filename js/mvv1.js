@@ -8,6 +8,10 @@ var length = 30;
 var hy1 = 350;
 var hy2 = 350;
 
+var plus = 0;
+var radius = 13;
+var duration = 900;
+
 var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -46,9 +50,23 @@ svg.append("text")
     .attr("x", 430)
     .attr("y", hy1 + 30);
 
-var plus = 0;
-var radius = 10;
-var duration = 900;
+
+//ellissi
+var elipseGroup = svg.selectAll(".ell").data(data);
+
+elipseGroup.enter().append("ellipse").classed("ell",true)
+    .attr("cx", function (d) {
+        return d.cx;
+    })
+    .attr("cy", function (d) {
+        return d.cy;
+    })
+    .attr("ry", function (d) {
+        return d.cy *  d.uncertainty;
+    })
+    .attr("rx", radius)
+
+
 
 var Color = net.brehaut.Color;
 

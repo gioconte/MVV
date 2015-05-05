@@ -4,7 +4,7 @@
 
 var width = window.innerWidth;
 var height = window.innerHeight;
-var radius = 8;
+var radius = 10;
 var duration = 7;
 var t = 0;
 var length = 30;

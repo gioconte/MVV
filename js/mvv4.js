@@ -9,6 +9,8 @@ var svgLegend;
 var hy1 = 350;
 var hy2 = 350;
 
+var colors = ['#08519c','#3182bd', '#6baed6'];
+
 var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -60,7 +62,7 @@ data.forEach(function(d){ uncertainties.push(d.uncertainty)});
 var quantileScale = d3.scale.quantile()
     .domain(uncertainties)
     //.range(['#66c2a4','#2ca25f','#006d2c']);
-.range(['#6baed6','#3182bd','#08519c'])
+.range(colors)
 
 var g = svg.append("g");
 
@@ -72,7 +74,11 @@ g.enter().append("circle")
     .attr("cx", function(d) {return d.cx})
     .attr("cy", function(d) {return d.cy})
     .attr("r",radius)
-    .attr("fill", function(d){return quantileScale(d.uncertainty)});
+    .attr("fill", function(d){return quantileScale(d.uncertainty)})
+    .style({
+        "stroke-width" : "2px",
+        "stroke": "black"
+    });
 
 //var legendGroup = svg.append("g").classed("legendGroup");
 

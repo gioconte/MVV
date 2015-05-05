@@ -17,7 +17,7 @@ var hy2 = 350;
 
 //var colors = ['#6baed6','#08306b'];
 
-var colors = ['#deebf7','#08306b']
+var colors = ['#08306b', '#deebf7']
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -94,7 +94,11 @@ g.enter().append("circle")
     .attr("cx", function(d) {return d.cx})
     .attr("cy", function(d) {return d.cy})
     .attr("r",radius)
-    .attr("fill", function(d){return linearScale(d.uncertainty)});
+    .attr("fill", function(d){return linearScale(d.uncertainty)})
+    .style({
+        "stroke-width" : "2px",
+        "stroke": "black"
+    });
 
 var drawLegend = function () {
     console.log("legend");
