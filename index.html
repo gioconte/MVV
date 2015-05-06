@@ -28,6 +28,26 @@
     </header>
     <section>
         <h3>
+            <a id="state of the art" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Uncertainty: Visual Encodings</h3>
+        <p>
+            Many attempts have been conducted in the literature in order to find the the most proper visual channel to encode
+            uncertainty. Although many visual encodings have been tested, transparency seems to be the most effective channel to encode uncertainty.
+            An interesting study is reported by Sanyal et al. in [1]. The work reported a user study to compare ed evaluate different approaches.
+            In particular they have tested:
+            <ul>
+                <li>Different Shapes</li>
+                <li>Color of the uncertainty glyphs</li>
+                <li>Color of the data surface (transparency)</li>
+                <li>Errorbars</li>
+            </ul>
+            From that study came out that error bars underperform withe respect to the others visualization techniques, while
+            the others perform in a comparable way. Moreover, a common agreement among visualization researchers is that visualizing
+            the uncertainty is highly related with the domain.
+        </p>
+        <p>
+            An interesting
+        </p>
+        <h3>
 
             <a id="goal" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h3>
         <p>
@@ -75,11 +95,23 @@
         <h3>
             <a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shape</h3>
 
-        <p>In the following examples, I exploited the shape of the data point to represent uncertainty. Each data point is represented using a circle
-        and an external border. The more distan is the external border, the more uncertain the data point is. <a href="http://gioconte.github.io/MVV/mvv5.html"> MVV5</a></p>
-        <h2>Bibliography</h2>
-        <p>[1] Sanyal, J., Zhang, S., Bhattacharya, G., Amburn, P., & Moorhead, R. J. (2009). A user study to compare four uncertainty visualization methods for 1d and 2d datasets. Visualization and Computer Graphics, IEEE Transactions on, 15(6), 1209-1218.</p>
+        <p>In the following example, I exploited the shape of the data point to represent uncertainty. Each data point is represented using a circle
+        and an external border. The more distant is the external border, the more uncertain the data point is. <a href="http://gioconte.github.io/MVV/mvv5.html"> MVV5</a></p>
 
+        <h3>
+            <a id="motion+shape" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motion and Shape</h3>
+
+        <p>In <a href="http://gioconte.github.io/MVV/mvv6.html"> MVV6</a> a combination of motion and shape is presented.
+            The initial circles are stretched according the uncertainty of the data point plotted. The more stretched is the
+            the data point, the more it is uncertain.
+
+
+        </p>
+
+
+        <h2>Bibliography</h2>
+        <p>[1] - Sanyal, J., Zhang, S., Bhattacharya, G., Amburn, P., & Moorhead, R. J. (2009). A user study to compare four uncertainty visualization methods for 1d and 2d datasets. Visualization and Computer Graphics, IEEE Transactions on, 15(6), 1209-1218.</p>
+        <p>[2] - Brown, Ross. Animated visual vibrations as an uncertainty visualisation technique. In: Proceedings of the 2nd international conference on Computer graphics and interactive techniques in Australasia and South East Asia. ACM, 2004. p. 84-89.</p>
     </section>
     <footer>
         <p>This project is maintained by <a href="https://github.com/gioconte">gioconte</a></p>
